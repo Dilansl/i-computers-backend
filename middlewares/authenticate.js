@@ -1,4 +1,6 @@
 import jwt from "jsonwebtoken"
+import dotenv from "dotenv"
+dotenv.config()
 
 export default function authenticate(req, res, next){
         const header = req.header("Authorization") // meken wenne ena req eka athule thiyena header eka aran dena eka
@@ -9,7 +11,7 @@ export default function authenticate(req, res, next){
         }else{    /*header eka athule thiyena "bearer " kiyana eka ain karala ee wenuwata api empty denawa ("") */
             const token = header.replace("Bearer " , "")  
 
-            jwt.verify(token, "secretkey99!!!!!",
+            jwt.verify(token, process.env.JWT_SECRET_KEY,
 
                 (err, decoded)=> {
                     

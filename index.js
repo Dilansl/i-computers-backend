@@ -3,15 +3,19 @@ import mongoose from 'mongoose'
 import studentRouter from './routers/studentRouter.js';
 import userRouter from './routers/userRouter.js';
 import authenticate from './middlewares/authenticate.js';
-
 import dns from "node:dns";
 import productRouter from './routers/productRouter.js';
+import dotenv from "Dotenv"
+
+dotenv.config()
+
+
 
 
 
 dns.setServers(["1.1.1.1", "8.8.8.8"]);
 
-const mongoDBURI = "mongodb+srv://admin:1234@cluster0.zulctv1.mongodb.net/?appName=Cluster0"
+const mongoDBURI = process.env.MONGO_URI
 
 mongoose.connect(mongoDBURI).then(
     ()=>{
